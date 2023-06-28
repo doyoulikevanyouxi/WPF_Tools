@@ -1,0 +1,155 @@
+﻿<Window x:Class="ColorPickerPluys.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ColorPickerPluys"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="500"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        SnapsToDevicePixels="True">
+    <Grid>
+        <!--#region 取色器-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1"  Margin="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition MaxWidth="110"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <!--该slider控件用于调整颜色选择器选择的12色相的初始颜色，与12色相渐变控件重合在一起，因此需要用隧道事件，当然如果把该控件放在12色相后就不用隧道事件-->
+                <Slider Name="ColorSelectorSlider" MinWidth="30" Maximum="1530" Minimum="0" Grid.Column="1" Style="{StaticResource SliderCustomStyle}" Orientation="Vertical"  Panel.ZIndex="2" MouseMove="Slider_MouseMove" PreviewMouseLeftButtonDown="ColorSelectorSlider_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="ColorSelectorSlider_PreviewMouseUp" ValueChanged="SliderColorS_ValueChanged"/>
+                <!--12色相渐变选取条-->
+                <Grid Name="dfas" Grid.Column="1">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFF0000" Offset="0"/>
+                            <GradientStop Color="#FFFFFF00" Offset="0.16666666"/>
+                            <GradientStop Color="#FF00FF00" Offset="0.33333333"/>
+                            <GradientStop Color="#FF00FFFF" Offset="0.5"/>
+                            <GradientStop Color="#FF0000FF" Offset="0.66666666"/>
+                            <GradientStop Color="#FFFF00FF" Offset="0.83333333"/>
+                            <GradientStop Color="#FFFF0000" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                </Grid>
+                <Border  BorderBrush="LightGray" BorderThickness="0 0 1 1"  >
+                    <Grid Name="ColorBord">
+                        <StackPanel Orientation="Vertical"  Name="xfd"/>
+                        <Canvas Background="Transparent" ClipToBounds="True"  MouseMove="Canvas_MouseMove" PreviewMouseLeftButtonDown="Canvas_MouseDown" PreviewMouseLeftButtonUp="Canvas_PreviewMouseLeftButtonUp">
+                            <Path Name="ColorSelector" Canvas.Right="-5" Canvas.Top="-5"   Stroke="White" Fill="Black" StrokeThickness="1">
+                                <Path.Data>
+                                    <GeometryGroup>
+                                        <EllipseGeometry Center="5,5" RadiusX="5" RadiusY="5"/>
+                                        <EllipseGeometry Center="5,5" RadiusX="3" RadiusY="3"/>
+                                    </GeometryGroup>
+                                </Path.Data>
+                            </Path>
+                        </Canvas>
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid  Grid.Column="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0"  CornerRadius="5" Name="colorMoment" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border.ToolTip>
+                        <TextBlock Text="当前颜色"/>
+                    </Border.ToolTip>
+                    <Grid  Width="60" Height="60" Background="{Binding ColorCurrent}">
+
+                    </Grid>
+
+                </Border>
+
+                <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="0 1 0 1">
+                    <StackPanel VerticalAlignment="Center">
+                        <Grid Margin="0 2 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="R" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBox  Grid.Column="1" BorderThickness=" 0 0 0 1" Text="{Binding ColorR}" Background="Transparent" TextAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Margin="0 2 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="G" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBox  Grid.Column="1"  BorderThickness=" 0 0 0 1" Text="{Binding ColorG}" Background="Transparent" TextAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Margin="0 2 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="B" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBox  Grid.Column="1"  BorderThickness=" 0 0 0 1" Text="{Binding ColorB}" Background="Transparent" TextAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Margin="0 2 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="A" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <StackPanel Orientation="Vertical" Grid.Column="1">
+                                <Slider Value="{Binding ColorA}" Maximum="1" Minimum="0" ValueChanged="Slider_ValueChanged"/>
+                                <TextBox Text="100%" BorderThickness=" 0 0 0 1"  Background="Transparent" TextAlignment="Center"/>
+
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+            <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="110"/>
+                </Grid.ColumnDefinitions>
+                <Grid Name="OriginColor" Grid.Column="0" Background="{Binding ColorOrigin}" PreviewMouseLeftButtonDown="OriginColor_MouseDown">
+                    <Grid.ToolTip>
+                        <TextBlock Text="初始颜色"/>
+                    </Grid.ToolTip>
+                </Grid>
+                <Grid Name="LastColor" Grid.Column="1" Background="{Binding Tag.Background,ElementName=ColorPop}">
+
+                    <Grid.ToolTip>
+                        <TextBlock Text="上一种颜色"/>
+                    </Grid.ToolTip>
+                </Grid>
+                <Button Style="{StaticResource GeneralButton}" Grid.Column="2" Background="Gray" Click="StartColorPick">
+                    <Button.ToolTip>
+                        <TextBlock Text="取色器"/>
+                    </Button.ToolTip>
+                </Button>
+                <TextBox Grid.Column="3" Text="#FFFFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0 0 0 1" Background="Transparent"/>
+            </Grid>
+        </Grid>
+        <!--#endregion-->
+    </Grid>
+</Window>

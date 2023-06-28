@@ -1,0 +1,16 @@
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\bin\Release\ColorPicker.exe.config
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\bin\Release\ColorPicker.exe
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\bin\Release\ColorPicker.pdb
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\obj\Release\ColorPicker.csprojAssemblyReference.cache
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\obj\Release\MainWindow.g.cs
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\obj\Release\App.g.cs
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\obj\Release\ColorPicker_MarkupCompile.cache
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\obj\Release\ColorPicker_MarkupCompile.lref
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\obj\Release\App.baml
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\obj\Release\CommonDictionary.baml
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\obj\Release\MainWindow.baml
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\obj\Release\ColorPicker.g.resources
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\obj\Release\ColorPicker.Properties.Resources.resources
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\obj\Release\ColorPicker.csproj.GenerateResource.cache
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\obj\Release\ColorPicker.exe
+E:\ProgramsSolution\VS\MyTest\MPLY\ColorPicker\obj\Release\ColorPicker.pdb
